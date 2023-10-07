@@ -51,6 +51,7 @@ it("Logs in with a valid username and password", () => {
 	cy.get("@usernameInput").type(validUsername);
 	cy.get("@passwordInput").type(commonPassword);
 	cy.get('[data-test="login-button"]').click();
-	cy.get(".title").should("exist");
-	cy.get(".title").contains("Products");
+    cy.location('pathname').should('eq', '/inventory.html')
+    cy.get('#react-burger-menu-btn').click();
+    cy.get('#logout_sidebar_link').click();
 });
