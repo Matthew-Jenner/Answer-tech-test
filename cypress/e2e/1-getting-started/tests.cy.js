@@ -42,16 +42,15 @@ it("clicks the login button", () => {
 it("Logs in with a valid username and password", () => {
 	cy.visit("https://saucedemo.com");
 
-	const validUsername = "standard_user";
-	const commonPassword = "secret_sauce";
-
 	cy.get('[data-test="username"]').as("usernameInput");
 	cy.get('[data-test="password"]').as("passwordInput");
 
-	cy.get("@usernameInput").type(validUsername);
-	cy.get("@passwordInput").type(commonPassword);
+	cy.get("@usernameInput").type("standard_user");
+	cy.get("@passwordInput").type("secret_sauce");
 	cy.get('[data-test="login-button"]').click();
-    cy.location('pathname').should('eq', '/inventory.html')
-    cy.get('#react-burger-menu-btn').click();
-    cy.get('#logout_sidebar_link').click();
+	cy.location("pathname").should("eq", "/inventory.html");
+	cy.get("#react-burger-menu-btn").click();
+	cy.get("#logout_sidebar_link").click();
+    cy.location("pathname").should("eq", "/");
+    cy.getAllCookies().should('be.empty')
 });
